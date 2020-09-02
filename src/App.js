@@ -2,13 +2,23 @@ import React from 'react';
 import Book from './Book';
 import Author from './Author';
 
+import book from './book.json';
+
+import './index.css'
+
 class App extends React.Component {
     render() {
         return (
-            <div>
-                < Book book={this.props.book} />
-                < Author author={this.props.book.authors} />
-            </div>
+            <>
+                <header>
+                    Bookshop
+                </header>
+                <main>
+                    <Book book={book} />
+                    <Author author={book.authors} />
+                </main>
+                <footer>&copy; {new Date().getFullYear()}</footer>
+            </>
         );
     }
 }
