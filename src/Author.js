@@ -1,14 +1,33 @@
 import React from 'react';
 
 class Author extends React.Component {
-  render() {
+    constructor(props) {
+        super(props);
 
-    const authors = this.props.author.map((author) =>
-      <div key={author.id}>{author.name} {author.email} <img src={author.avatar} /></div>
-    );
+        this.state = { authors: 2 }
+    }
 
-    return (<div>{authors}</div>)
-  }
+    showAll() {
+        this.setState({ authors: this.props.author.length });
+    }
+
+    render() {
+
+        const authorsCounter = this.props.author.length;
+
+        const authors = this.props.author.slice(0, this.state.authors).map((author) =>
+            <div key={author.id}>{author.name} {author.email} <img src={author.avatar} /></div>
+        );
+
+        return (
+            <div>
+                <div>
+                    {authors}
+                </div>
+                {authorsCounter > this.state.authors && <button onClick={() => this.showAll()}>Show all {authorsCounter}</button>}
+            </div>
+        )
+    }
 }
 
 export default Author;
